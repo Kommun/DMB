@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="DMB.View.AddSoldierView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DMB.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Margin="20">
+        <TextBox Header="Имя"
+                 Text="{Binding Name , Mode=TwoWay}"/>
+        <DatePicker  Name="tbBeginDate"
+                     Header="Начало службы"
+                     Date="{Binding BeginDate, Mode=TwoWay}"
+                     Margin="0,20"/>
+        <DatePicker  Name="tbEndDate"
+                     Header="Окончание службы"
+                     Date="{Binding EndDate, Mode=TwoWay}"/>
+    </StackPanel>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Сохранить"
+                          Icon="Accept"
+                          Command="{Binding SaveCommand}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+</Page>

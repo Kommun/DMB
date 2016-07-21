@@ -1,0 +1,313 @@
+﻿<Page
+    x:Class="DMB.View.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DMB"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:Shared.Utils.Converters"
+    xmlns:adduplex="using:AdDuplex.Universal.Controls.WinPhone.XAML"
+    xmlns:calendar="using:Syncfusion.UI.Xaml.Controls.Input"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+
+        <!--Конвертеры-->
+        <converters:CommandGroupToVisibilityConverter x:Key="appBarConv"/>
+        <converters:CalendarColorConverter x:Key="calendarConv" 
+                                           CurrentSoldier="{Binding MainSoldier}"
+                                           Events="{Binding Events}"/>
+        <converters:ObjectToBooleanConverter x:Key="objConv"/>
+        <converters:ProgressToVisibilityConverter x:Key="progressConv"/>
+        <converters:InverseBooleanToVisibilityConverter x:Key="boolConv"/>
+
+        <!--Стиль выбранного элемента списка-->
+        <Style x:Key="selectionContainerStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="SelectedUnfocused">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="(Border.Foreground).(SolidColorBrush.Color)" To="Teal"/>
+                                            <ColorAnimation Duration="0" Storyboard.TargetName="myback" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Gray"/>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="myback" Storyboard.TargetProperty="Opacity" To="0.2"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="myback" Background="Transparent" CornerRadius="5"/>
+                            <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="10,0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Шаблон друга-->
+        <DataTemplate x:Key="friendTemplate">
+            <Grid Margin="0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="{Binding name}" FontSize="25"/>
+                <TextBlock Text="{Binding Days}" HorizontalAlignment="Right" FontSize="25"/>
+                <ProgressBar Grid.Row="1" Value="{Binding Progress}" Margin="0,10"/>
+                <TextBlock Grid.Row="2" Text="{Binding ProgressPercent}" FontSize="17"/>
+                <TextBlock Grid.Row="2" Text="{Binding stringEndDate}" HorizontalAlignment="Right" FontSize="17"/>
+            </Grid>
+        </DataTemplate>
+
+        <!--Шаблон события-->
+        <DataTemplate x:Key="eventTemplate">
+            <Grid Margin="0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding ImgSource}" Height="65" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <StackPanel Opacity="{Binding Opacity}" Grid.Column="1">
+                    <TextBlock Text="{Binding Name}"
+                               FontSize="22"
+                               FontWeight="SemiBold"
+                               TextTrimming="WordEllipsis"
+                               TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Remain}"
+                               FontSize="17"/>
+                    <TextBlock Text="{Binding DateString}"
+                               FontSize="17"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <!--Шаблон ячейки календаря-->
+        <DataTemplate x:Key="CellTemplate">
+            <Grid>
+                <Ellipse Width="30" Height="30" Fill="{Binding Converter={StaticResource calendarConv}}"/>
+                <TextBlock Text="{Binding Day}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            </Grid>
+        </DataTemplate>
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--Баннер-->
+        <adduplex:AdControl AdUnitId="161719"
+                            AppKey="57011a0c-c576-4753-b264-203b10c673ab"
+                            Canvas.ZIndex="10"
+                            Visibility="{Binding Settings.IsFullVersion, Converter={StaticResource boolConv}}"/>
+        <Grid Name="screenShotContainer"
+              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              Grid.Row="1">
+            <!--Фоновое изображение-->
+            <Image Source="{Binding BackgroundImage}"
+                   Stretch="UniformToFill" 
+                   Opacity="0.3"/>
+
+            <Pivot SelectedIndex="{Binding SelectedPage, Mode=TwoWay}">
+                <PivotItem Header="Таймер">
+                    <ScrollViewer>
+                        <StackPanel>
+                            <Grid Margin="5,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <!--Имя солдата-->
+                                <TextBlock Text="{Binding MainSoldier.name}"
+                                           FontSize="25"
+                                           FontWeight="SemiBold"
+                                           VerticalAlignment="Center"/>
+                                <AppBarButton HorizontalAlignment="Right"
+                                              Command="{Binding ChangeMainSoldierCommand}"
+                                              Margin="-20,-10,-20,-25"
+                                              Icon="Edit"/>
+                                <!--Индикатор прохождения службы-->
+                                <ProgressBar Value="{Binding MainSoldier.Progress}"
+                                             RenderTransformOrigin="0.5,0.5"
+                                             Margin="0,10,0,20"
+                                             Grid.Row="1">
+                                    <ProgressBar.RenderTransform>
+                                        <CompositeTransform ScaleY="2.5"/>
+                                    </ProgressBar.RenderTransform>
+                                </ProgressBar>
+                                <!--Процент прохождения службы-->
+                                <TextBlock Text="{Binding MainSoldier.ProgressPercent}" 
+                                           FontSize="25"
+                                           Grid.Row="2"/>
+                                <!--Дата окончания службы-->
+                                <TextBlock Text="{Binding MainSoldier.stringEndDate}"
+                                           HorizontalAlignment="Right"
+                                           FontSize="25"
+                                           Grid.Row="2"/>
+                            </Grid>
+                            <!--Таймер-->
+                            <Grid Margin="0,20,0,0"
+                                  HorizontalAlignment="Center"
+                                  Visibility="{Binding MainSoldier.Progress, Converter={StaticResource progressConv}, ConverterParameter=true}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+
+                                <TextBlock Text="Прошло" FontSize="25" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <TextBlock Text="{Binding DaysLast}" FontSize="20" FontWeight="Bold" Grid.Row="1"/>
+                                <TextBlock Text="{Binding TimeLast}" FontSize="17" Opacity="0.7" Grid.Row="2" />
+
+                                <TextBlock Text="Осталось" FontSize="25" FontWeight="Bold" Grid.Column="2"/>
+                                <TextBlock Text="{Binding DaysRemain}" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="2"/>
+                                <TextBlock Text="{Binding TimeRemain}" FontSize="17" Opacity="0.7" Grid.Row="2" Grid.Column="2"/>
+                            </Grid>
+
+                            <!--Ближайшее событие-->
+                            <ContentControl ContentTemplate="{StaticResource eventTemplate}"
+                                            Content="{Binding NearestEvent}"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,20,0,0"
+                                            Visibility="{Binding MainSoldier.Progress, Converter={StaticResource progressConv}, ConverterParameter=true}"/>
+
+                            <!--Сообщение о дембеле-->
+                            <StackPanel HorizontalAlignment="Center"
+                                        Margin="0,20,0,0"
+                                        Visibility="{Binding MainSoldier.Progress, Converter={StaticResource progressConv}, ConverterParameter=false}">
+                                <TextBlock FontSize="35"
+                                           FontWeight="Bold"
+                                           TextWrapping="Wrap"
+                                           xml:space="preserve">Поздравляем с &#13;&#10;завершением  &#13;&#10;службы!</TextBlock>
+                                <TextBlock Text="{Binding DmbTime}"
+                                           TextWrapping="Wrap"
+                                           Margin="0,30,0,0"
+                                           FontSize="20"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </PivotItem>
+
+                <PivotItem Header="Друзья">
+                    <!--Список друзей-->
+                    <ListView ItemTemplate="{StaticResource friendTemplate}"
+                              ItemsSource="{Binding Friends}"
+                              SelectedItem="{Binding SelectedFriend, Mode=TwoWay}"
+                              ItemContainerStyle="{StaticResource selectionContainerStyle}"/>
+                </PivotItem>
+
+                <PivotItem Header="Календарь">
+                    <Grid Name="grdCalendar">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Календарь-->
+                        <calendar:SfCalendar Name="calendar" DoubleTapped="calendar_DoubleTapped" Margin="0,-30,0,0"
+                                             ManipulationCompleted="calendar_ManipulationCompleted"
+                                             SelectedDate="{Binding SelectedDate,Mode=TwoWay}"
+                                             CellTemplate="{StaticResource CellTemplate}" ShowNavigationButton="True" 
+                                             ManipulationStarted="calendar_ManipulationStarted" ManipulationMode="All"
+                                             Height="{Binding ActualWidth,ElementName=grdCalendar}"
+                                             Width="{Binding ActualWidth,ElementName=grdCalendar}"/>
+                        <!--Расшифровка календаря-->
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Ellipse Height="15" Width="15" Fill="Green" Margin="0,0,10,0"/>
+                            <TextBlock Text="отслужено"/>
+                            <Ellipse Height="15" Width="15" Fill="Red" Margin="20,0,10,0"/>
+                            <TextBlock Text="событие"/>
+                            <Ellipse Height="15" Width="15" Fill="Gray" Margin="20,0,10,0"/>
+                            <TextBlock Text="прошедшее событие"/>
+                        </StackPanel>
+                    </Grid>
+                </PivotItem>
+
+                <PivotItem Header="События">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--Подсказка-->
+                        <TextBlock Name="tbHelp"
+                                   Opacity="0.7"
+                                   FontSize="35"
+                                   TextWrapping="Wrap"
+                                   Visibility="Collapsed"
+                                   Text="Добавить событие можно двойным нажатием по дате в календаре или с помощью меню"/>
+                        <!--Список событий-->
+                        <ListView Name="lvEvents" 
+                                  ItemTemplate="{StaticResource eventTemplate}"
+                                  ItemsSource="{Binding Events}"
+                                  SelectedItem="{Binding SelectedEvent, Mode=TwoWay}"
+                                  Loaded="lvEvents_Loaded"
+                                  ItemContainerStyle="{StaticResource selectionContainerStyle}"/>
+                    </Grid>
+                </PivotItem>
+            </Pivot>
+        </Grid>
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Закрепить" Icon="Pin"
+                          Command="{Binding PinCommand}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=0}"/>
+                <AppBarButton Label="Настройки" Icon="Setting"
+                          Command="{Binding SettingsCommand}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=0}"/>
+                
+                <AppBarButton Label="Добавить" Icon="Add" 
+                          Command="{Binding AddFriendCommand}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=1}"/>
+                <AppBarButton Label="Изменить" Icon="Edit"
+                          Command="{Binding ChangeFriendCommand}"
+                          IsEnabled="{Binding SelectedFriend, Converter={StaticResource objConv}}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=1}"/>
+                <AppBarButton Label="Удалить" Icon="Cancel"
+                          Command="{Binding DeleteFriendCommand}"
+                          IsEnabled="{Binding SelectedFriend, Converter={StaticResource objConv}}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=1}"/>
+                <AppBarButton Label="На главную" Icon="ContactInfo"
+                          Command="{Binding MakeMainCommand}"
+                          IsEnabled="{Binding SelectedFriend, Converter={StaticResource objConv}}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=1}"/>
+
+                <AppBarButton Label="Добавить событие" Icon="Add"
+                          Command="{Binding AddEventCommand}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=2}"/>
+
+                <AppBarButton Label="Удалить" Icon="Cancel" 
+                          Command="{Binding DeleteEventCommand}"
+                          IsEnabled="{Binding SelectedEvent, Converter={StaticResource objConv}}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=3}"/>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Документы" Icon="Library"
+                          Command="{Binding DocumentsCommand}"/>
+                <AppBarButton Label="Поделиться" Icon="MailReply"
+                          Command="{Binding ShareCommand}"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+</Page>
