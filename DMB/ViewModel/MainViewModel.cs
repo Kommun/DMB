@@ -236,20 +236,31 @@ namespace DMB.ViewModel
                 switch (new AppSettings().Theme)
                 {
                     case 1:
-                        return string.Format("ms-appx:///Images/ThemesBackground/army_{0}.jpg", new Random().Next(3));
+                        return GetThemePath("army", 3);                       
                     case 2:
-                        return string.Format("ms-appx:///Images/ThemesBackground/car_{0}.jpg", new Random().Next(5));
+                        return GetThemePath("car", 5);
                     case 3:
-                        return string.Format("ms-appx:///Images/ThemesBackground/sport_{0}.jpg", new Random().Next(4));
+                        return GetThemePath("sport", 4);
                     case 4:
-                        return string.Format("ms-appx:///Images/ThemesBackground/nature_{0}.jpg", new Random().Next(4));
+                        return GetThemePath("nature", 4);
                     case 5:
-                        return string.Format("ms-appx:///Images/ThemesBackground/animals_{0}.jpg", new Random().Next(4));
+                        return GetThemePath("animals", 4);
                     case 6:
                         return "ms-appdata:///local/CustomTheme";
                     default:
                         return null;
                 }
+        }
+
+        /// <summary>
+        /// Получить путь к картинкам темы
+        /// </summary>
+        /// <param name="name">Название темы</param>
+        /// <param name="count">Количество картинок</param>
+        /// <returns></returns>
+        private string GetThemePath(string name, int count)
+        {
+            return $"ms-appx:///Images/ThemesBackground/{name}_{new Random().Next(count)}.jpg";
         }
 
         /// <summary>
