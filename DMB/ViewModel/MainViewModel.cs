@@ -240,6 +240,12 @@ namespace DMB.ViewModel
                     case 2:
                         return string.Format("ms-appx:///Images/ThemesBackground/car_{0}.jpg", new Random().Next(5));
                     case 3:
+                        return string.Format("ms-appx:///Images/ThemesBackground/sport_{0}.jpg", new Random().Next(4));
+                    case 4:
+                        return string.Format("ms-appx:///Images/ThemesBackground/nature_{0}.jpg", new Random().Next(4));
+                    case 5:
+                        return string.Format("ms-appx:///Images/ThemesBackground/animals_{0}.jpg", new Random().Next(4));
+                    case 6:
                         return "ms-appdata:///local/CustomTheme";
                     default:
                         return null;

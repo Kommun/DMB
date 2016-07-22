@@ -139,6 +139,10 @@
     <Content Include="Images\calendarGreen.png" />
     <Content Include="Images\calendarOrange.png" />
     <Content Include="Images\lock.png" />
+    <Content Include="Images\ThemesBackground\animals_0.jpg" />
+    <Content Include="Images\ThemesBackground\animals_1.jpg" />
+    <Content Include="Images\ThemesBackground\animals_2.jpg" />
+    <Content Include="Images\ThemesBackground\animals_3.jpg" />
     <Content Include="Images\ThemesBackground\army_0.jpg" />
     <Content Include="Images\ThemesBackground\army_1.jpg" />
     <Content Include="Images\ThemesBackground\army_2.jpg" />
@@ -147,6 +151,14 @@
     <Content Include="Images\ThemesBackground\car_2.jpg" />
     <Content Include="Images\ThemesBackground\car_3.jpg" />
     <Content Include="Images\ThemesBackground\car_4.jpg" />
+    <Content Include="Images\ThemesBackground\nature_0.jpg" />
+    <Content Include="Images\ThemesBackground\nature_1.jpg" />
+    <Content Include="Images\ThemesBackground\nature_2.jpg" />
+    <Content Include="Images\ThemesBackground\nature_3.jpg" />
+    <Content Include="Images\ThemesBackground\sport_0.jpg" />
+    <Content Include="Images\ThemesBackground\sport_1.jpg" />
+    <Content Include="Images\ThemesBackground\sport_2.jpg" />
+    <Content Include="Images\ThemesBackground\sport_3.jpg" />
     <None Include="Package.StoreAssociation.xml" />
     <None Include="packages.config" />
   </ItemGroup>

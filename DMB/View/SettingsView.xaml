@@ -53,6 +53,9 @@
                                         <ComboBoxItem Content="Стандартная"/>
                                         <ComboBoxItem Content="Военная"/>
                                         <ComboBoxItem Content="Автомобили"/>
+                                        <ComboBoxItem Content="Спорт"/>
+                                        <ComboBoxItem Content="Природа"/>
+                                        <ComboBoxItem Content="Животные"/>
                                         <ComboBoxItem Content="Пользовательская"/>
                                     </ComboBox.Items>
                                 </ComboBox>

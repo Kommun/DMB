@@ -113,7 +113,7 @@ namespace Shared.Utils
                 if (value == -1)
                     return;
 
-                if (value == 3)
+                if (value == 6)
                     try
                     {
                         FileOpenPicker openPicker = new FileOpenPicker();
