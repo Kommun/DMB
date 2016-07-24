@@ -84,6 +84,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CalendarPopup.xaml.cs">
+      <DependentUpon>CalendarPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AddSoldierViewModel.cs" />
     <Compile Include="ViewModel\DocumentsListViewModel.cs" />
     <Compile Include="ViewModel\DocumentViewModel.cs" />
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\CalendarPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddSoldierView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,7 +214,7 @@
       <HintPath>..\packages\AdDuplexWinPhone81.9.0.0.6\lib\portable-win81+wpa81\AdDuplex.Universal.WinPhone.WinRT.winmd</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Syncfusion.SfInput.Universal, Version=13.2451.0.29, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+    <Reference Include="Syncfusion.SfInput.Universal, Version=14.2451.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SfControls\Syncfusion.SfInput.Universal.dll</HintPath>
     </Reference>

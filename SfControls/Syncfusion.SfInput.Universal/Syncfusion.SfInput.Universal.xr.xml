@@ -88,6 +88,10 @@
     <RootPropertyPathName Name="ActualWidth" />
     <RootPropertyPathName Name="InternalPrecision" />
     <RootPropertyPathName Name="PreviewValue" />
+    <RootPropertyPathName Name="AppWidth" />
+    <RootPropertyPathName Name="Subject" />
+    <RootPropertyPathName Name="Color" />
+    <RootPropertyPathName Name="StartTime" />
     <RootPropertyPathName Name="SelectedDateBackground" />
   </Roots.PropertyPathNames>
   <Roots.RootTypes>
@@ -453,6 +457,7 @@
       <RootProperty Name="BlackOutCellTemplate" />
       <RootProperty Name="DisabledCellTemplate" />
       <RootProperty Name="HeaderTemplate" />
+      <RootProperty Name="AppointmentTemplate" />
       <RootProperty Name="SelectedDateBackground" />
     </RootType>
     <RootType FullName="Syncfusion.UI.Xaml.Controls.Input.CalendarView">
@@ -477,6 +482,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Function" />
       <RootProperty Name="FlowDirection" />
+      <RootProperty Name="ContentTemplate" />
       <RootProperty Name="Background" />
     </RootType>
     <RootType FullName="Syncfusion.UI.Xaml.Controls.Input.InputPane">
@@ -553,6 +559,7 @@
       <RootProperty Name="RenderTransform" />
       <RootProperty Name="CornerRadius" />
       <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.VisualStateManager">
       <RootMethod Name="GetVisualStateGroups" />
@@ -622,6 +629,8 @@
       <RootProperty Name="Height" />
       <RootProperty Name="StrokeThickness" />
       <RootProperty Name="Visibility" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
       <RootProperty Name="ContentTemplate" />
@@ -690,6 +699,7 @@
       <RootProperty Name="Width" />
       <RootProperty Name="Padding" />
       <RootProperty Name="FontStyle" />
+      <RootProperty Name="DataContext" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Popup">
       <RootProperty Name="Child" />
@@ -836,6 +846,14 @@
       <RootProperty Name="RatioVisible" />
       <RootProperty Name="Content" />
     </RootType>
+    <RootType FullName="Syncfusion.UI.Xaml.Controls.Input.StartTimeConverter" />
+    <RootType FullName="Syncfusion.UI.Xaml.Controls.Input.Expander" />
+    <RootType FullName="Syncfusion.UI.Xaml.Controls.Input.ExpanderItemsControl">
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="ItemsSource" />
+    </RootType>
+    <RootType FullName="Syncfusion.UI.Xaml.Controls.Input.ExpanderItem" />
     <RootType FullName="Windows.UI.Xaml.Controls.ListBoxItem" />
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
   </Roots.RootTypes>

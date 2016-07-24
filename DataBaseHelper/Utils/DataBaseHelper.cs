@@ -18,10 +18,7 @@ namespace Shared.Utils
         /// </summary>
         public static SQLiteConnection Connection
         {
-            get
-            {
-                return _connection ?? (_connection = new SQLiteConnection(_dbPath));
-            }
+            get { return _connection ?? (_connection = new SQLiteConnection(_dbPath)); }
         }
     }
 }

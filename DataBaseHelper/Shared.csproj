@@ -99,6 +99,7 @@
     <Compile Include="Utils\SQLiteAsync.cs" />
     <Compile Include="Utils\TileHelper.cs" />
     <Compile Include="Utils\TimeHelper.cs" />
+    <Compile Include="Utils\ToastHelper.cs" />
     <Compile Include="Utils\UpdateManager.cs" />
   </ItemGroup>
   <ItemGroup>

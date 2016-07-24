@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="11115KhmelenkoKonstantin.9960169790B9" Publisher="CN=97EF5691-F21D-4889-A791-CECFF3E09E15" Version="3.3.1.0" />
+  <Identity Name="11115KhmelenkoKonstantin.9960169790B9" Publisher="CN=97EF5691-F21D-4889-A791-CECFF3E09E15" Version="3.3.2.0" />
   <mp:PhoneIdentity PhoneProductId="50dc38f0-8f3b-4d1e-abb9-c73d15775b8b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Дембель</DisplayName>

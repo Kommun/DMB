@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -19,6 +14,7 @@ namespace DMB.View
 {
     public sealed partial class MainView : Page
     {
+        private bool _singleTap;
         private MainViewModel _vm;
 
         public MainView()
@@ -42,12 +38,26 @@ namespace DMB.View
         }
 
         /// <summary>
+        /// Нажатие на ячейку календаря
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void calendarCell_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            _singleTap = true;
+            await Task.Delay(200);
+            if (_singleTap)
+                _vm.ShowCalendarMessage();
+        }
+
+        /// <summary>
         /// Двойное нажатие на дату в календаре
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void calendar_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void calendarCell_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
+            _singleTap = false;
             _vm.AddEvent();
         }
 

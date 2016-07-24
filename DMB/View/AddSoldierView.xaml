@@ -8,7 +8,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Margin="20">
+    <StackPanel Margin="20,0">
+        <TextBlock Text="{Binding Header}"
+                   TextWrapping="WrapWholeWords"
+                   FontSize="35"
+                   Margin="0,40,0,20"/>
         <TextBox Header="Имя"
                  Text="{Binding Name , Mode=TwoWay}"/>
         <DatePicker  Name="tbBeginDate"

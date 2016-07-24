@@ -92,7 +92,9 @@
 
         <!--Шаблон ячейки календаря-->
         <DataTemplate x:Key="CellTemplate">
-            <Grid>
+            <Grid Name="calendarCell" Background="Transparent"
+                  Tapped="calendarCell_Tapped"
+                  DoubleTapped="calendarCell_DoubleTapped">
                 <Ellipse Width="30" Height="30" Fill="{Binding Converter={StaticResource calendarConv}}"/>
                 <TextBlock Text="{Binding Day}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
             </Grid>
@@ -221,7 +223,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <!--Календарь-->
-                        <calendar:SfCalendar Name="calendar" DoubleTapped="calendar_DoubleTapped" Margin="0,-30,0,0"
+                        <calendar:SfCalendar Name="calendar" Margin="0,-30,0,0"
                                              ManipulationCompleted="calendar_ManipulationCompleted"
                                              SelectedDate="{Binding SelectedDate,Mode=TwoWay}"
                                              CellTemplate="{StaticResource CellTemplate}" ShowNavigationButton="True" 
@@ -275,7 +277,10 @@
                 <AppBarButton Label="Настройки" Icon="Setting"
                           Command="{Binding SettingsCommand}"
                           Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=0}"/>
-                
+                <AppBarButton Label="Документы" Icon="Library"
+                          Command="{Binding DocumentsCommand}"
+                          Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=0}"/>
+
                 <AppBarButton Label="Добавить" Icon="Add" 
                           Command="{Binding AddFriendCommand}"
                           Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=1}"/>
@@ -302,8 +307,6 @@
                           Visibility="{Binding SelectedPage, Converter={StaticResource appBarConv}, ConverterParameter=3}"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Документы" Icon="Library"
-                          Command="{Binding DocumentsCommand}"/>
                 <AppBarButton Label="Поделиться" Icon="MailReply"
                           Command="{Binding ShareCommand}"/>
             </CommandBar.SecondaryCommands>

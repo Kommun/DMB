@@ -296,6 +296,11 @@
             Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
             </summary>
         </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.SfCalculator.DefaultValueProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
         <member name="F:Syncfusion.UI.Xaml.Controls.Input.SfCalculator.MemoryProperty">
             <summary>
             Using a DependencyProperty as the backing store for Memory.  This enables animation, styling, binding, etc...
@@ -432,6 +437,46 @@
             <summary>
             Gets or sets the NewErrorMessage
             </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.StartTimeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for StartTime.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.EndTimeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for EndTime.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.SubjectProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Subject.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.ColorProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for Color.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.StartTime">
+            <summary>
+            Gets the sets the appointment's start time.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.EndTime">
+            <summary>
+            Gets the sets the appointment's end time.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.Subject">
+            <summary>
+            Gets or sets the subject for an appointment.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.CalendarAppointment.Color">
+            <summary>
+            Gets or sets the background for an appointment.
+            </summary>       
         </member>
         <member name="T:Syncfusion.UI.Xaml.Controls.Input.CalendarDayButton">
             <summary>
@@ -643,6 +688,23 @@
             Invoked when the collection is changed.
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "F:Syncfusion.UI.Xaml.Controls.Input.Expander.AppointmentCollectionProperty" -->
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.Expander.AppointmentCollection">
+            <summary>
+            Gets or sets the appointment for calendar appointment.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.ExpanderItemsControl.AppointmentTemplateProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for AppointmentTemplate.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Syncfusion.UI.Xaml.Controls.Input.ExpanderItemsControl.AppointmentCollectionProperty" -->
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.ExpanderItemsControl.AppointmentTemplate">
+            <summary>
+            Gets or sets the template for customizing month view appointment.
+            </summary>
+        </member>
         <member name="T:Syncfusion.UI.Xaml.Controls.Input.SelectionMode">
             <summary>
             Represents a list for the selection mode
@@ -669,6 +731,11 @@
             <see cref="T:Syncfusion.UI.Xaml.Controls.Input.SfCalendar"/>
             </summary>
             <seealso cref="T:Syncfusion.UI.Xaml.Controls.Input.CalendarView"/>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.SfCalendar.CanRestrictPointerPress">
+            <summary>
+            Restrict the Pointer Press
+            </summary>
         </member>
         <member name="M:Syncfusion.UI.Xaml.Controls.Input.SfCalendar.#ctor">
             <summary>
@@ -903,6 +970,16 @@
             </summary>
         </member>
         <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfCalendar.ScrollPreviousCommand">
+            <summary>
+            Executes the command when ScrollPrevious Button is pressed.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfCalendar.ScrollNextYearCommand">
+            <summary>
+            Executes the command when ScrollNext Button is pressed.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfCalendar.ScrollPreviousYearCommand">
             <summary>
             Executes the command when ScrollPrevious Button is pressed.
             </summary>
@@ -4856,6 +4933,16 @@
             cref="P:Syncfusion.UI.Xaml.Controls.Input.NumericTextBox.Value"/> is changed.
             </summary>
         </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Input.SfNumericTextBox.Pasting">
+            <summary>
+            Occurs when Pasing operation has been invoked.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Input.SfNumericTextBox.CustomContextMenuOpening">
+            <summary>
+            Occurs when ContextMenu has been opened.
+            </summary>
+        </member>
         <member name="T:Syncfusion.UI.Xaml.Controls.Input.Parsers">
             <summary>
             Represents a set of parsers
@@ -5579,6 +5666,11 @@
             Using a DependencyProperty as the backing store for LabelOrientation.  This enables animation, styling, binding, etc...
             </summary>
         </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Input.SfRangeSlider.ThumbIntervalProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for ThumbInterval.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
         <member name="M:Syncfusion.UI.Xaml.Controls.Input.SfRangeSlider.OnHorizontalRangeEndThumbDragDelta(System.Object,Windows.UI.Xaml.Controls.Primitives.DragDeltaEventArgs)">
             <summary>
             Occurs when the HorizontalRangeEndThumb is dragged.
@@ -5884,9 +5976,32 @@
             Gets or sets the orientation of the label
             </summary>
         </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfRangeSlider.ThumbInterval">
+            <summary>
+            Gets or sets the interval between thumbs
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Input.SfRangeSlider.LabelLoaded">
+            <summary>
+            Occurs when label values are loaded<see
+            cref="P:Syncfusion.UI.Xaml.Controls.Layout.Input"/> is changed.
+            </summary>
+        </member>
         <member name="E:Syncfusion.UI.Xaml.Controls.Input.SfRangeSlider.RangeChanged">
             <summary>
             Occurs when RangeStart or RangeEnd gets changed<see
+            cref="P:Syncfusion.UI.Xaml.Controls.Layout.Input"/> is changed.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Input.SfRangeSlider.RangeStartChanged">
+            <summary>
+            Occurs when RangeStart gets changed<see
+            cref="P:Syncfusion.UI.Xaml.Controls.Layout.Input"/> is changed.
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Input.SfRangeSlider.RangeEndChanged">
+            <summary>
+            Occurs when RangeEnd gets changed<see
             cref="P:Syncfusion.UI.Xaml.Controls.Layout.Input"/> is changed.
             </summary>
         </member>
@@ -6098,6 +6213,12 @@
         <member name="P:Syncfusion.UI.Xaml.Controls.Input.TickBar.CustomLabels">
             <summary>
             Returns a list of custom labels
+            </summary>
+        </member>
+        <member name="E:Syncfusion.UI.Xaml.Controls.Input.TickBar.LabelLoaded">
+            <summary>
+            Occurs when Label values are drawn<see
+            cref="P:Syncfusion.UI.Xaml.Controls.Layout.Input"/> is changed.
             </summary>
         </member>
         <member name="T:Syncfusion.UI.Xaml.Controls.Input.TickBarItem">
@@ -6656,6 +6777,19 @@
             Using a DependencyProperty as the backing store for NotifyOnDataErrors.  This enables animation, styling, binding, etc...
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Syncfusion.UI.Xaml.Controls.Data.DataValidation.GetNotifyOnDataContextChange(Windows.UI.Xaml.DependencyObject)" -->
+        <member name="M:Syncfusion.UI.Xaml.Controls.Data.DataValidation.SetNotifyOnDataContextChange(Windows.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the value
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="F:Syncfusion.UI.Xaml.Controls.Data.DataValidation.NotifyOnDataContextChangeProperty">
+            <summary>
+            Using a DependencyProperty as the backing store for NotifyOnDataContextChange.  This enables animation, styling, binding, etc...
+            </summary>
+        </member>
         <member name="M:Syncfusion.UI.Xaml.Controls.Data.DataValidation.GetPropertyPath(Windows.UI.Xaml.DependencyObject)">
             <summary>
             Gets the Property path
@@ -6933,6 +7067,20 @@
             <seealso
             cref="P:Syncfusion.UI.Xaml.Controls.Input.TimePicker.SetValueOnLostFocus"/>
             <seealso cref="T:Syncfusion.UI.Xaml.Controls.Input.TimeSelector"/>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfTimePicker.MinTime">
+            <summary>
+            Gets or sets the Minimum  Time to be listed in the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Input.TimePicker"/> control.
+            </summary>
+            <value> The default value is  new TimeSpan(00,00,00)</value>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfTimePicker.MaxTime">
+            <summary>
+            Gets or sets the Maximum  Time to be listed in the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Input.TimePicker"/> control.
+            </summary>
+            <value> The default value is  new TimeSpan(23,59,59)</value>
         </member>
         <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfTimePicker.IsDropDownOpen">
             <summary>
@@ -7251,6 +7399,18 @@
             The default value is <see cref="P:System.DateTime.Now">DateTime.Now</see>.
             </value>
             <seealso cref="T:Syncfusion.UI.Xaml.Controls.Input.TimePicker"/>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfTimeSelector.MinTime">
+            <summary>
+            Gets or sets the Minimum time to be listed in the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Input.TimeSelector"/> control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfTimeSelector.MaxTime">
+            <summary>
+            Gets or sets the Maximum Time to be listed in the <see
+            cref="T:Syncfusion.UI.Xaml.Controls.Input.TimeSelector"/> control.
+            </summary>
         </member>
         <member name="P:Syncfusion.UI.Xaml.Controls.Input.SfTimeSelector.HeaderStyle">
             <summary>
@@ -7645,6 +7805,13 @@
             cref="T:Syncfusion.UI.Xaml.Controls.Input.FunctionsPane"/> 
             </summary>
         </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Input.CancelEventHandler">
+            <summary>
+            Handler for Cancel operations.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="T:Syncfusion.UI.Xaml.Controls.Input.RangeChangedEventArgs">
             <summary>
             Invoked due to change in range
@@ -7670,9 +7837,60 @@
             Gets or sets the previous value of a state value property.
             </summary>
         </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.RangeStartChagedEventArgs.NewStartValue">
+            <summary>
+            Gets or sets the new value of a state value property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.RangeStartChagedEventArgs.OldStartValue">
+            <summary>
+            Gets or sets the previous value of a state value property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.RangeEndChagedEventArgs.NewEndValue">
+            <summary>
+            Gets or sets the new value of a state value property.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.RangeEndChagedEventArgs.OldEndValue">
+            <summary>
+            Gets or sets the previous value of a state value property.
+            </summary>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Input.LabelLoadedEventArgs">
+            <summary>
+            Invoked due to change in Content value
+            </summary>
+        </member>
+        <member name="P:Syncfusion.UI.Xaml.Controls.Input.LabelLoadedEventArgs.Content">
+            <summary>
+            Gets or sets the value of Content property.
+            </summary>
+        </member>
         <member name="T:Syncfusion.UI.Xaml.Controls.Input.RangeChangedEventHandler">
             <summary>
             Occurs when an event is invoked due to change in the range.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Input.RangeStartChangedEventHandler">
+            <summary>
+            Occurs when an event is invoked due to change in the rangeStart.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Input.RangeEndChangedEventHandler">
+            <summary>
+            Occurs when an event is invoked due to change in the rangeEnd.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Syncfusion.UI.Xaml.Controls.Input.LabelLoadedEventHandler">
+            <summary>
+            Occurs when an event is invoked due to change in the Label.
             </summary>
             <param name="sender"></param>
             <param name="e"></param>

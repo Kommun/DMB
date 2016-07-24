@@ -50,11 +50,13 @@ namespace Shared.Model
         {
             get
             {
+                var daysCount = Math.Abs(RemainDays);
+
                 if (RemainDays == 0)
                     return "Сегодня";
                 else
                     return string.Format("{0} {1} {2}", RemainDays > 0 ? TimeHelper.Remain(RemainDays) :
-                        TimeHelper.Gone(RemainDays), Math.Abs(RemainDays), TimeHelper.Days(Math.Abs(RemainDays)));
+                        TimeHelper.Gone(daysCount), daysCount, TimeHelper.Days(daysCount));
             }
         }
 

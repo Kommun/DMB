@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using Shared.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Popups;
 using Windows.Storage;
 using Windows.ApplicationModel.DataTransfer;
@@ -33,6 +34,8 @@ namespace DMB.ViewModel
         private int _selectedPage;
         private voin _selectedFriend;
         private importantDate _selectedEvent;
+        private string _backgroundImage;
+        private Popup _currentPopup;
 
         #endregion
 
@@ -105,7 +108,6 @@ namespace DMB.ViewModel
         /// </summary>
         public DateTime SelectedDate { get; set; } = DateTime.Today;
 
-        private string _backgroundImage;
         /// <summary>
         /// Фоновое изображение
         /// </summary>
@@ -236,7 +238,7 @@ namespace DMB.ViewModel
                 switch (new AppSettings().Theme)
                 {
                     case 1:
-                        return GetThemePath("army", 3);                       
+                        return GetThemePath("army", 3);
                     case 2:
                         return GetThemePath("car", 5);
                     case 3:
@@ -399,7 +401,7 @@ namespace DMB.ViewModel
 
         #endregion
 
-        #region Events
+        #region Calendar
 
         /// <summary>
         /// Добавить событие
@@ -407,48 +409,94 @@ namespace DMB.ViewModel
         /// <param name="parameter"></param>
         public async void AddEvent(object parameter = null)
         {
-            if (Settings.IsFullVersion)
+
+            if (!Settings.IsFullVersion)
             {
-                var tbName = new TextBox();
-                var tbMessage = new TextBlock { Text = "Название события" };
-                var spanel = new StackPanel();
-                spanel.Children.Add(tbMessage);
-                spanel.Children.Add(tbName);
-
-                ContentDialog eventNameDialog = new ContentDialog()
-                {
-                    Content = spanel,
-                    Title = SelectedDate.ToString("dd MMMM yyyy"),
-                    PrimaryButtonText = "Сохранить",
-                    SecondaryButtonText = "Отменить"
-                };
-
-                eventNameDialog.PrimaryButtonClick += (a, args) =>
-                {
-                    if (tbName.Text == "")
-                    {
-                        args.Cancel = true;
-                        tbMessage.Text = "Недопустимое название";
-                    }
-                    else
-                    {
-                        var newEvent = new importantDate()
-                        {
-                            VoinId = Settings.mainSoldierId,
-                            Date = SelectedDate,
-                            Name = tbName.Text
-                        };
-                        DataBaseHelper.Connection.Insert(newEvent);
-                        // Находим место вставки нового события
-                        var index = Events.IndexOf(Events.FirstOrDefault(e => e.Date > newEvent.Date));
-                        Events.Insert(index >= 0 ? index : Events.Count, newEvent);
-                    }
-                };
-                await eventNameDialog.ShowAsync();
-            }
-            else
                 await new MessageDialog("Добавлять события можно только в полной версии").ShowAsync();
+                return;
+            }
+
+            if (_currentPopup != null)
+                _currentPopup.IsOpen = false;
+
+            var tbName = new TextBox();
+            var tbMessage = new TextBlock { Text = "Название события" };
+            var spanel = new StackPanel();
+            spanel.Children.Add(tbMessage);
+            spanel.Children.Add(tbName);
+
+            ContentDialog eventNameDialog = new ContentDialog()
+            {
+                Content = spanel,
+                Title = SelectedDate.ToString("d MMMM yyyy"),
+                PrimaryButtonText = "Сохранить",
+                SecondaryButtonText = "Отменить"
+            };
+
+            eventNameDialog.PrimaryButtonClick += (a, args) =>
+            {
+                if (tbName.Text == "")
+                {
+                    args.Cancel = true;
+                    tbMessage.Text = "Недопустимое название";
+                }
+                else
+                {
+                    var newEvent = new importantDate()
+                    {
+                        VoinId = Settings.mainSoldierId,
+                        Date = SelectedDate,
+                        Name = tbName.Text
+                    };
+                    DataBaseHelper.Connection.Insert(newEvent);
+                    // Находим место вставки нового события
+                    var index = Events.IndexOf(Events.FirstOrDefault(e => e.Date > newEvent.Date));
+                    Events.Insert(index >= 0 ? index : Events.Count, newEvent);
+                }
+            };
+            await eventNameDialog.ShowAsync();
         }
+
+        /// <summary>
+        /// Показать уведомление календаря
+        /// </summary>
+        /// <param name="message">Текст уведомления</param>
+        public async void ShowCalendarMessage()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            var events = DataBaseHelper.Connection.Query<importantDate>("select * from importantDate where VoinId=?", Settings.mainSoldierId).Where(e => e.Date == SelectedDate);
+            foreach (var e in events)
+                sb.AppendLine(e.Name);
+
+            if (SelectedDate == MainSoldier.beginDate)
+                sb.AppendLine("Призыв");
+
+            if (SelectedDate == MainSoldier.endDate)
+                sb.AppendLine("Демобилизация");
+
+            if (events.Count(e => e.IsSystem) == 0 && SelectedDate >= MainSoldier.beginDate && SelectedDate < MainSoldier.endDate)
+                sb.AppendLine($"{(SelectedDate - MainSoldier.beginDate).Days + 1} день службы");
+
+            if (string.IsNullOrEmpty(sb.ToString().Trim()))
+                return;
+
+            if (_currentPopup != null)
+                _currentPopup.IsOpen = false;
+            var cPopup = new Controls.CalendarPopup(SelectedDate.ToString("d MMMM yyyy"), sb.ToString());
+            var popup = new Popup { Child = cPopup };
+            popup.ChildTransitions = new Windows.UI.Xaml.Media.Animation.TransitionCollection();
+            popup.ChildTransitions.Add(new Windows.UI.Xaml.Media.Animation.ContentThemeTransition());
+
+            _currentPopup = popup;
+            popup.IsOpen = true;
+            await Task.Delay(3000);
+            popup.IsOpen = false;
+        }
+
+        #endregion
+
+        #region Events
 
         /// <summary>
         /// При изменении коллекции события обновляем календарь

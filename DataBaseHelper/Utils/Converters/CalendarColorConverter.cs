@@ -59,7 +59,7 @@ namespace Shared.Utils.Converters
             else if ((DateTime)value >= CurrentSoldier.beginDate && (DateTime)value <= _coloredDate)
                 return new SolidColorBrush(Colors.Green);
             else
-                return Colors.Transparent;
+                return new SolidColorBrush(Colors.Transparent);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

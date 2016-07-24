@@ -15,7 +15,20 @@ namespace DMB.ViewModel
         private AppSettings _settings = new AppSettings();
         private DateTimeOffset _beginDate;
 
+        #region Properties
+
+        /// <summary>
+        /// Сохранить
+        /// </summary>
         public RelayCommand SaveCommand { get; set; }
+
+        /// <summary>
+        /// Заголовок
+        /// </summary>
+        public string Header
+        {
+            get { return _soldier == null ? "Новый боец" : "Редактирование данных"; }
+        }
 
         /// <summary>
         /// Имя
@@ -40,6 +53,8 @@ namespace DMB.ViewModel
         /// Дата окончания службы
         /// </summary>
         public DateTimeOffset EndDate { get; set; }
+
+        #endregion
 
         /// <summary>
         /// Конструктор
@@ -115,7 +130,13 @@ namespace DMB.ViewModel
                     });
                 }
 
-                DataBaseHelper.Connection.Insert(new importantDate() { VoinId = newSoldier.Id, Name = "Половина службы", Date = newSoldier.beginDate.AddDays((newSoldier.endDate - newSoldier.beginDate).Days / 2), IsSystem = true });
+                DataBaseHelper.Connection.Insert(new importantDate()
+                {
+                    VoinId = newSoldier.Id,
+                    Name = "Половина службы",
+                    Date = newSoldier.beginDate.AddDays((newSoldier.endDate - newSoldier.beginDate).Days / 2),
+                    IsSystem = true
+                });
 
                 App.NavigationService.GoBack();
             }
